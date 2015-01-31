@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<title>{?title?}</title>
+		<link rel="stylesheet" type="text/css" href="{?template root?}default.css">
+		<link href='http://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+		<div class="admin-panel">{?login?} <img class="pride-button" src="{?template root?}pride-button.gif"></img></div>
+		<header class="main">
+			<img src="{?template root?}profile-photo.jpg" class="profile-photo"></img>	
+			<h1>{?title?}</h1>
+			<input type="text" class="search" placeholder="{?search placeholder?}"></input>
+		</header>
+		<nav class="main">
+			<ul>
+				{%nav main%}<li><a href="{%0%}">{%1%}</a></li>{%nav main%}
+			</ul>
+		</nav>
+		<article class="main">
+			<nav>
+				{%link menu%}
+				<div class="side-box">
+					<h1>{%0%}</h1>
+					<ul>
+						{%1%}
+					</ul>
+				</div>
+				{%link menu%}
+			</nav>
+			<div class="posts">
+				{%post%}
+				<div class="post">
+					<header class="post">
+						<h1>{%0%}</h1>
+					</header>
+					<article class="post">
+						{%1%}
+					</article>
+					<footer class="post">
+						<div class="text">Posted by</div>
+						<div class="author">{%2%}</div>
+						<div class="text">on</div>
+						<div class="timedate">{%3%}</div>
+						<div class="comment-link">Comments (0)</div>
+					</footer>
+				</div>
+				{%post%}
+			</div>
+		</article>
+		<footer class="main">
+			<div class="copyright">&copy;{?copy right year?} {?copy right holder?}. {?copy right?}</div>
+		</footer>
+	</body>
+</html>

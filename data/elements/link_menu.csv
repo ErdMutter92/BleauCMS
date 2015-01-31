@@ -1,0 +1,2 @@
+Main Menu|{%main menu nav%}<li><a href="{%0%}">{%1%}</a></li>{%main menu nav%}
+Social Network|{%social network links%}<li><a href="{%0%}" target="{%3%}">{%1%}</a></li>{%social network links%}
