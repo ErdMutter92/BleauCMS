@@ -1,7 +1,14 @@
 <?php
 
-require_once "library/template.php";
+require('./models/CSV.php');
+require('./models/tags.php');
+require('./views/blog.php');
+require('./views/article.php');
 
-$template = new template('./data/template/index.html', './data/en.csv');
-
+$site = new Articles();
+$site->template('./templates/Starry Night/');
+$site->parseHTML('index.html', 'default.css');
+$tags = new Tags($site, './data/tags.csv');
+$site->setHTML($tags);
+$site->display();
 ?>
