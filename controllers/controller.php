@@ -19,9 +19,14 @@
 			"index" => "index",
 		);
 
-		public function __construct($URLValues, $key) {
-			if (isset($URLValues[$key])) {
-				$this->returnFunction($URLValues[$key]);
+		// Upon inital construction of the object, this takes
+		// the array along with the key to contain the page
+		// requests and makes sure it's set before returnning
+		// a corresponding function, if not set returns
+		// the function corresponding to the landingPage.
+		public function __construct($key) {
+			if (isset($_GET[$key])) {
+				$this->returnFunction($_GET[$key]);
 			} else {
 				$this->returnFunction($this->landingPage);
 			}
@@ -46,7 +51,7 @@
 		}
 
 		public function index() {
-
+			echo 'Index: Hello, World!';
 		}
 
 	}

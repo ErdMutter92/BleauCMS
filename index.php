@@ -1,8 +1,8 @@
 <?php
 
-require('./controllers/blog.php');
+require('./controllers/controller.php');
 
 
-$site = new Controller($_GET, 'p');
+$site = new Controller('p');
 
 ?>

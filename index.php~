@@ -3,6 +3,6 @@
 require('./controllers/blog.php');
 
 
-$site = new Controller($_GET, 'p');
+$site = new Controller('p');
 
 ?>
