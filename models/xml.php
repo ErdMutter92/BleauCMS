@@ -1,4 +1,12 @@
 <?php
+/********************************************************
+
+   Title: xml
+   Author: Brandon "Alexis" Bleau (bmbleau@gmail.com)
+   Discription: A crude way of dealing with XML files.
+
+
+********************************************************/
 	class XML {
 
 		private $xmlFile;
