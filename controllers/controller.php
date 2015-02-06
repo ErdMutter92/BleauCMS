@@ -30,7 +30,7 @@
 		// the function corresponding to the landingPage.
 		public function __construct($key) {
 
-			$this->view = new View();
+			$this->view = new Template();
 			$this->model = new Model();
 
 			if (isset($_GET[$key])) {
@@ -59,7 +59,9 @@
 		}
 
 		public function index() {
-			
+			$data = array ( "0" => "LOL" );
+			$this->view->consolidate('index', $data);
+			$this->view->display();
 		}
 
 	}
