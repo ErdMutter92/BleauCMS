@@ -8,6 +8,10 @@
 
 
 ********************************************************/
+
+	require('./views/template.php');
+	require('./models/model.php');
+
 	class Controller {
 
 		// default page to load when no other
@@ -25,6 +29,10 @@
 		// a corresponding function, if not set returns
 		// the function corresponding to the landingPage.
 		public function __construct($key) {
+
+			$this->view = new View();
+			$this->model = new Model();
+
 			if (isset($_GET[$key])) {
 				$this->returnFunction($_GET[$key]);
 			} else {
@@ -51,7 +59,7 @@
 		}
 
 		public function index() {
-			echo 'Index: Hello, World!';
+			
 		}
 
 	}
