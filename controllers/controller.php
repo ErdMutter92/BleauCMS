@@ -18,7 +18,7 @@
 		// page is defined.
 		private $landingPage = 'index';
 
-		public $controllerMap = array (
+		private $controllerMap = array (
 			"blog" => "index",
 			"index" => "index",
 		);
@@ -50,22 +50,23 @@
 			// Makes sure the requested page ($name) has a controller
 			if (array_key_exists($name, $this->controllerMap)) {
 				$controller = $this->controllerMap[$name];
-				return $this->$controller();
+				return $this->$controller($name);
 			} else {
-				return $this->error404();
+				return $this->error404($name);
 			}
 		}
 
 		// Handles any page not found issues that arrise. 
-		public function error404() {
+		private function error404($name) {
 			header("HTTP/1.0 404 Not Found");
-			$this->view->consolidate('error404', array ());
+			$data = $this->model->request('error404Data', 'array');
+			$this->view->consolidate('error404', $data);
 			$this->view->display();
 		}
 
-		public function index() {
+		private function index($name) {
 			$data = $this->model->request('currentBlogData', 'array');
-			$this->view->consolidate('index', $data);
+			$this->view->consolidate($name, $data);
 			$this->view->display();
 		}
 
