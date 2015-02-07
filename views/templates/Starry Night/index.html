@@ -1,53 +1,64 @@
 <html>
 	<head>
-		<title>{?title?}</title>
+		<title>Nex Gen Tech</title>
+		<link rel="stylesheet" type="text/css" href="{?template_root?}default.css">
+		<link href='{?template_root?}default.css' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
-		<div class="admin-panel">{?login?} <img class="pride-button" src="{?template root?}pride-button.gif"></img></div>
+		<div class="admin-panel">Login <img src="{?template_root?}pride-button.gif" class="pride-button"></img></div>
 		<header class="main">
-			<img src="{?template root?}profile-photo.jpg" class="profile-photo"></img>	
-			<h1>{?title?}</h1>
-			<input type="text" class="search" placeholder="{?search placeholder?}"></input>
+			<img src="{?template_root?}profile-photo.jpg" class="profile-photo"></img>	
+			<h1>Nex Gen Tech</h1>
+			<input type="text" class="search" placeholder="Search..."></input>
 		</header>
 		<nav class="main">
 			<ul>
-				{%nav main%}<li><a href="{%0%}">{%1%}</a></li>{%nav main%}
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Ask Me Anything</a></li>
+				<li><a href="#">About Me</a></li>
+				<li><a href="#">Tag Cloud</a></li>
 			</ul>
 		</nav>
 		<article class="main">
 			<nav>
-				{%link menu%}
 				<div class="side-box">
-					<h1>{%0%}</h1>
+					<h1>Main Menu</h1>
 					<ul>
-						{%1%}
+						<li><a href="#">About This Blog</a></li>
 					</ul>
 				</div>
-				{%link menu%}
+				<div class="side-box">
+					<h1>Blog Topics</h1>
+				</div>
+				<div class="side-box">
+					<h1>Find Me Online</h1>
+				</div>
 			</nav>
 			<div class="posts">
-				{%post%}
+				<!-- Start of Post: Article One -->
 				<div class="post">
 					<header class="post">
-						<h1>{%0%}</h1>
+						<h1>Article One</h1>
 					</header>
 					<article class="post">
-						{%1%}
+						<p class="first">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque eget augue id sollicitudin. Nunc suscipit fringilla mauris, in fringilla ex posuere nec. Pellentesque erat mauris, dignissim non ex sed, placerat imperdiet mi. Nullam id venenatis augue. Mauris dolor felis, rutrum sed ipsum id, eleifend vulputate leo. Morbi feugiat ultricies eros. Integer finibus, nisi vitae interdum tempor, eros magna ultrices neque, sit amet tempus ligula dolor et quam.</p>
+						<p>Aliquam erat volutpat. Nullam sit amet nisl sit amet ex venenatis molestie. Nullam quam arcu, auctor non pretium eu, bibendum at nunc. Suspendisse mauris urna, cursus eget lectus a, lacinia vehicula mauris. Donec eu tellus quis diam consequat lacinia quis vel neque. Integer arcu odio, iaculis ut nisi at, rutrum eleifend lacus. Aenean maximus malesuada sodales. Ut turpis risus, fermentum a hendrerit at, blandit sed nisi.</p>
+						<p>Vestibulum ac metus nec mi convallis bibendum in non nisl. Sed elit tortor, semper vel fringilla non, fermentum quis est. Ut cursus nunc quis sapien dignissim pulvinar. Vivamus elementum urna id ligula tempor congue. Vestibulum condimentum bibendum lectus. Proin venenatis arcu turpis, ac rhoncus magna pellentesque nec. Morbi eget hendrerit dui, interdum mattis metus.</p>
 					</article>
 					<footer class="post">
 						<div class="text">Posted by</div>
-						<div class="author">{%2%}</div>
+						<div class="author">ErdMutter92</div>
 						<div class="text">on</div>
-						<div class="timedate">{%3%}</div>
+						<div class="timedate">Jan 15, 2015 @ 1:39 AM</div>
 						<div class="comment-link">Comments (0)</div>
 					</footer>
 				</div>
-				{%post%}
+				<!-- End of Post: Article One -->
 			</div>
 		</article>
 		<footer class="main">
-			<div class="copyright">&copy;{?copy right year?} {?copy right holder?}. {?copy right?}</div>
+			<div class="copyright">&copy;2015 alexis@bleauweb.net</div>
 		</footer>
 	</body>
 </html>

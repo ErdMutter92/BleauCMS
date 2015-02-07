@@ -64,7 +64,8 @@
 		}
 
 		public function index() {
-			$this->view->consolidate('index', array ());
+			$data = $this->model->request('currentBlogData', 'array');
+			$this->view->consolidate('index', $data);
 			$this->view->display();
 		}
 
