@@ -36,8 +36,11 @@
 			if (isset($_GET[$key])) {
 				$this->returnFunction($_GET[$key]);
 			} else {
+				
 				$this->returnFunction($this->landingPage);
 			}
+			
+			unset($_GET[$key]);
 		}
 
 		// If the required page is in the controller map
@@ -55,12 +58,13 @@
 
 		// Handles any page not found issues that arrise. 
 		public function error404() {
-
+			header("HTTP/1.0 404 Not Found");
+			$this->view->consolidate('error404', array ());
+			$this->view->display();
 		}
 
 		public function index() {
-			$data = array ( "0" => "LOL" );
-			$this->view->consolidate('index', $data);
+			$this->view->consolidate('index', array ());
 			$this->view->display();
 		}
 
