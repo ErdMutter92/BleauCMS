@@ -1,4 +1,14 @@
 <?php
+/********************************************************
+
+   Title: template
+   Author: Brandon "Alexis" Bleau (bmbleau@gmail.com)
+   Discription: The brains behind the template system,
+		accepts data and the template name then
+		returns the view back.
+
+
+********************************************************/
 	class Template {
 
 		private $template;
@@ -11,6 +21,7 @@
 
 		private $templateMap = array (
 			"index" => "Starry Night/",
+			"blog" => "Starry Night/",
 			"error404" => "Starry Night/"
 		);
 
@@ -31,11 +42,8 @@
 					}
 
 				}
+				closedir($handle);
 			}
-		}
-
-		public function setTags($tags) {
-			$this->tags = (array) $this->data['tags'];
 		}
 
 		// input: $page = String: what page to load
@@ -58,6 +66,9 @@
 			// sending it out as something to be displayed.
 		}
 
+		// Takes the TAGS sub array from the data passed
+		// from the controller and replaces the tags
+		// in the template html.
 		private function handleTags($data) {
 			foreach ($data as $key => $item) {
 				$this->templateFiles['html'] = str_replace($key, $item, $this->templateFiles['html']);
