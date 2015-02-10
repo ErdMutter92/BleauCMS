@@ -4,5 +4,7 @@ A blog style project of sorts, where you are able to edit pages. Pages are a sin
 <h2>Under Development</h2>
 Being as this is a new project, and that I am not sure what direction I want to take... everything is under development and could be completely rewritten at any time. xD
 <ul>
+<li>Currently working on fixing the mess know as my model...</li>
+<li>Then I need to fix the other mess know as my view...</li>
 <li>Everything...</li>
 </ul>
