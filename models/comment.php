@@ -1,19 +1,23 @@
 <?php
 
-	class Article {
+	class Comment {
 
 		public $id;
+		public $articleID;
 		public $title;
-		public $body;
 		public $author;
+		public $emailAddress;
+		public $body;
 		public $timestamp;
 
-		public function __construct($id, $title, $body, $author, $timestamp) {
+		public function __construct($id, $title, $body, $author, $timestamp, $articleID, $emailAddress) {
 			$this->id = $id;
 			$this->title = $title;
 			$this->body = $body;
 			$this->author = $author;
 			$this->timestamp = $timestamp;
+			$this->articleID = $articleID;
+			$this->emailAddress = $emailAddress;
 		}
 
 		public function setID($id) {
@@ -23,7 +27,7 @@
 		public function setTitle($title) {
 			$this->title = $title;
 		}
-		
+
 		public function setBody($body) {
 			$this->body = $body;
 		}
@@ -36,15 +40,13 @@
 			$this->timestamp = $timestamp;
 		}
 
-		public function setArticle($id, $title, $body, $author, $timestamp) {
-			$this->id = $id;
-			$this->title = $title;
-			$this->body = $body;
-			$this->author = $author;
-			$this->timestamp = $timestamp;
+		public function setArticleID($articleID) {
+			$this->articleID = $articleID;
 		}
-	
-	}
 
+		public function setEmailAddress($emailAddress) {
+			$this->emailAddress = $emailAddress;
+		}
+	}
 
 ?>
