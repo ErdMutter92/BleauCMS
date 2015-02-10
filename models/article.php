@@ -2,53 +2,46 @@
 
 	class Article {
 
-		public $article['id'];
-		public $article['title'];
-		public $article['body'];
-		public $article['author'];
-		public $article['timestamp'];
+		public $id;
+		public $title;
+		public $body;
+		public $author;
+		public $timestamp;
 
-		public function __construct($id) {
-			$this->searchByID($id);
-		}
-
-		public function getArticle($id) {
-			// code to get the article from the database
-			// using $id as an index.
-		}
-
-		// Saves the current variables in the array article
-		// to the database medium using ID as primary key.
-		public function saveArticle() {
-			// code to save the article
+		public function __construct($id, $title, $body, $author, $timestamp) {
+			$this->id = $id;
+			$this->title = $title;
+			$this->body = $body;
+			$this->author = $author;
+			$this->timestamp = $timestamp;
 		}
 
 		public function setArticleID($id) {
-			$this->article['id'] = $id;
+			$this->id = $id;
 		}
 
 		public function setArticleTitle($title) {
-			$this->article['title'] = $title;
+			$this->title = $title;
 		}
 		
 		public function setArticleBody($body) {
-			$this->article['body'] = $body;
+			$this->body = $body;
 		}
 
 		public function setArticleAuthor($author) {
-			$this->article['author'] = $author;
+			$this->author = $author;
 		}
 
 		public function setArticleTimestamp($timestamp) {
-			$this->article['timestamp'] = $timestamp;
+			$this->timestamp = $timestamp;
 		}
 
 		public function setArticle($id, $title, $body, $author, $timestamp) {
-			$this->article['id'] = $id;
-			$this->article['title'] = $title;
-			$this->article['body'] = $body;
-			$this->article['author'] = $author;
-			$this->article['timestamp'] = $timestamp;
+			$this->id = $id;
+			$this->title = $title;
+			$this->body = $body;
+			$this->author = $author;
+			$this->timestamp = $timestamp;
 		}
 		
 		public function returnArticle() {
