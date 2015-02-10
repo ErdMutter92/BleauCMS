@@ -2,11 +2,11 @@
 
 	class Article {
 
-		public $id;
-		public $title;
-		public $body;
-		public $author;
-		public $timestamp;
+		private $id;
+		private $title;
+		private $body;
+		private $author;
+		private $timestamp;
 
 		public function __construct($id, $title, $body, $author, $timestamp) {
 			$this->id = $id;
@@ -43,6 +43,27 @@
 			$this->author = $author;
 			$this->timestamp = $timestamp;
 		}
+
+		public function getID() {
+			return $this->id;
+		}
+
+		public function getTitle() { 
+			return $this->title;
+		}
+
+		public function getBody() { 
+			return $this->body;
+		}
+
+		public function getAuthor() { 
+			return $this->author;
+		}
+
+		public function getTimestamp() { 
+			return $this->timestamp;
+		}
+
 	
 	}
 

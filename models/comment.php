@@ -2,13 +2,13 @@
 
 	class Comment {
 
-		public $id;
-		public $articleID;
-		public $title;
-		public $author;
-		public $emailAddress;
-		public $body;
-		public $timestamp;
+		private $id;
+		private $articleID;
+		private $title;
+		private $author;
+		private $emailAddress;
+		private $body;
+		private $timestamp;
 
 		public function __construct($id, $title, $body, $author, $timestamp, $articleID, $emailAddress) {
 			$this->id = $id;
@@ -46,6 +46,34 @@
 
 		public function setEmailAddress($emailAddress) {
 			$this->emailAddress = $emailAddress;
+		}
+
+		public function getID() {
+			return $this->id;
+		}
+
+		public function getTitle() {
+			return $this->title;
+		}
+
+		public function getBody() {
+			return $this->body;
+		}
+
+		public function getAuthor() {
+			return $this->author;
+		}
+
+		public function getTimestamp() {
+			return $this->timestamp;
+		}
+
+		public function getArticleID() {
+			return $this->articleID;
+		}
+
+		public function getEmailAddress() {
+			return $this->emailAddress;
 		}
 	}
 
