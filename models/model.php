@@ -45,7 +45,18 @@
 			return $tmpArray;
 		}
 
-		private function currentBlogData() {			
+		// INPUT: (int) $startID: index of first post to grab.
+		// INPUT: (int) $endID: index of last post to grab.
+		// OUTPUT: (array) $data: array containing post data.
+		// gets the posts from the database starting from
+		// $startID to $endID, where $endID >= $startID.
+		private function getPosts($startID, $endID) {
+			if (((int) $startID) <= ((int) $endID)) {
+				// code :D
+			}
+		}
+
+		private function currentBlogData() {
 			$this->requestedData = $this->genTagsArray('./data/index/Tags/tags.csv', ', ');
 		}
 
