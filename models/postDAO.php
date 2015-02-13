@@ -1,6 +1,5 @@
 <?php
 
-	require('./models/dao.php');
 	require('./models/article.php');
 
 	class PostDAO {

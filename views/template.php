@@ -56,6 +56,11 @@
 			$this->article = $article;
 			$this->tags = $tags;
 
+			// runs through the array sending the tag object to handleTags.
+			foreach ($this->tags as $key => $item) {
+				$this->handleTags($tags[$key]);
+			}
+
 			// Code to be written.
 			
 		}
@@ -63,7 +68,11 @@
 		// Takes the TAGS sub array from the data passed
 		// from the controller and replaces the tags
 		// in the template html.
-		private function handleTags($data) {
+		private function handleTags(Tag $object) {
+			$tagStr = '{' . $object->getSymble() . $object->getTag() . $object->getSymble() . '}';
+
+			$data[$tagStr] = $object->getContents();
+			
 			foreach ($data as $key => $item) {
 				$this->templateFiles['html'] = str_replace($key, $item, $this->templateFiles['html']);
 			}

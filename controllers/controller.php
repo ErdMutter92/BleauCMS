@@ -11,7 +11,6 @@
 
 	require('./views/template.php');
 	require('./models/model.php');
-	require('./models/postDAO.php');
 
 	class Controller {
 
@@ -66,9 +65,12 @@
 		}
 
 		private function index($name) {
-			$post = new postDAO('./data/posts.csv', '|');
+			$post = new PostDAO('./data/posts.csv', '|');
+			$tags = new TagDAO('./data/tags.csv', '|');
+
 			$post = $post->get('0');
-			$tags = ''; // placeholder until tagsDAO is able to return data.
+			$tags = $tags->getAll();
+
 			$this->view->consolidate($name, $post, $tags);
 			$this->view->display();
 		}

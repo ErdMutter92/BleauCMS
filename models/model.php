@@ -11,6 +11,8 @@
 
 ********************************************************/
 	require('./models/csv.php');
+	require('./models/postDAO.php');
+	require('./models/tagDAO.php');
 
 	class Model {
 
