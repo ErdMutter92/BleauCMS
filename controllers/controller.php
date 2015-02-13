@@ -68,10 +68,10 @@
 			$post = new PostDAO('./data/posts.csv', '|');
 			$tags = new TagDAO('./data/tags.csv', '|');
 
-			$post = $post->get('0');
-			$tags = $tags->getAll();
+			$post = $post->getArticles(0, 5);
 
-			$this->view->consolidate($name, $post, $tags);
+			$this->view->consolidate($name, $post, $tags->getAll());
+
 			$this->view->display();
 		}
 

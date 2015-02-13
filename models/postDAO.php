@@ -7,6 +7,7 @@
 		private $csvFileLoc;
 		private $delimiter;
 		private $handler;
+		private $posts;
 
 		public function __construct($csvFileLoc = './data/posts.csv', $delimiter) {
 			$this->csvFileLoc = $csvFileLoc;
@@ -48,6 +49,26 @@
 
 		public function delete($id) {
 			$this->handler->removeLine($id);
+		}
+
+		public function getAll() {
+			$article = $this->handler->returnArray();
+			foreach ($article as $key => $item) {
+				$this->articles[] = new Article($item['0'], $item['1'], $item['2'], $item['3'], $item['4']);
+			}
+			
+			return $this->articles;
+		}
+
+		public function getArticles($start, $number) {
+			$article = $this->handler->returnArray();
+			$article = array_slice($article, $start, $number);
+
+			foreach ($article as $item) {
+				$articles[] = new Article($item['0'], $item['1'], $item['2'], $item['3'], $item['4']);
+			}
+
+			return $articles;
 		}
 	}
 ?>

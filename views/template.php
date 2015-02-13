@@ -24,8 +24,6 @@
 			"blog" => "Starry Night/",
 			"error404" => "Starry Night/"
 		);
-
-		private $dataHandlers = array ("Tags");
 	
 		private function fetchTemplateContents() {
 			if ($handle = opendir($this->templateDir.$this->templateMap[$this->template])) {
@@ -56,6 +54,8 @@
 			$this->article = $article;
 			$this->tags = $tags;
 
+			$this->handlePosts($this->article['0']);
+
 			// runs through the array sending the tag object to handleTags.
 			foreach ($this->tags as $key => $item) {
 				$this->handleTags($tags[$key]);
@@ -76,6 +76,14 @@
 			foreach ($data as $key => $item) {
 				$this->templateFiles['html'] = str_replace($key, $item, $this->templateFiles['html']);
 			}
+		}
+
+		public function handlePosts(Article $object) {
+			$this->templateFiles['html'] = str_replace('<!-- ARTICLE_TITLE -->', $object->getTitle(), $this->templateFiles['html']);
+			$this->templateFiles['html'] = str_replace('<!-- ARTICLE_AUTHOR -->', $object->getAuthor(), $this->templateFiles['html']);
+			$this->templateFiles['html'] = str_replace('<!-- ARTICLE_TIME -->', $object->getTimestamp(), $this->templateFiles['html']);
+			$this->templateFiles['html'] = str_replace('<!-- ARTICLE_TEXT -->', $object->getBody(), $this->templateFiles['html']);
+			$this->templateFiles['html'] = str_replace('<!-- COMMENTS_LINK -->', 'Comments (0)', $this->templateFiles['html']);
 		}
 
 		public function display() {
