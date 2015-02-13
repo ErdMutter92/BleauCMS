@@ -1,10 +1,9 @@
 <?php
 
 	require('./models/dao.php');
-	require('./models/CSV.php');
 	require('./models/article.php');
 
-	class PostDAO implements dao {
+	class PostDAO {
 
 		private $csvFileLoc;
 		private $delimiter;
@@ -18,7 +17,7 @@
 
 		// INPUT: Article entity
 		// creates a post in the posts database.
-		public function create((article) $object) {
+		public function create(Article $object) {
 			// creates a string containing the format needed for addLine
 			$tmpString = $object->getID() . $this->delimiter . $object->getTitle() . $this->delimiter . 
 				     $object->getBody() . $this->delimiter . $object->getAuthor() . $this->delimiter . 
@@ -30,7 +29,7 @@
 			$this->handler->write();
 		}
 
-		public function update((article) $object) {
+		public function update(Article $object) {
 			// creates a string containing the format needed for addLine
 			$tmpString = $object->getID() . $this->delimiter . $object->getTitle() . $this->delimiter . 
 				     $object->getBody() . $this->delimiter . $object->getAuthor() . $this->delimiter . 
@@ -44,19 +43,12 @@
 
 		public function get($id) {
 			$article = $this->handler->returnArray()[$id];
-			$object = new Article();
-			$object->setID($article['0']);
-			$object->setID($article['1']);
-			$object->setID($article['2']);
-			$object->setID($article['3']);
-			$object->setID($article['4']);
+			$object = new Article($article['0'], $article['1'], $article['2'], $article['3'], $article['4']);
 			return $object;
 		}	
 
 		public function delete($id) {
 			$this->handler->removeLine($id);
 		}
-
 	}
-
 ?>

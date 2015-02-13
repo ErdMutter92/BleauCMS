@@ -13,7 +13,7 @@
 
 		private $template;
 		private $templateDir = './views/templates/';
-		private $data;
+		private $article;
 		private $templateFiles;
 		private $tags;
 
@@ -49,21 +49,15 @@
 		// input: $page = String: what page to load
 		// input: $data = Array: infomration from the model.
 		// output: Returns the constructed view to be displayed.
-		public function consolidate($template, $data) {
+		public function consolidate($template, $article, $tags) {
 			$this->template = (string) $template;
-			$this->data = (array) $data;
 			$this->fetchTemplateContents();
-			
-			foreach ($this->data as $key => $item) {
-				if (false !== array_search($key, $this->dataHandlers)) {
-					$functionCall = "handle".$key;
-					$this->$functionCall($item);
-				}
-			}
 
-			// code to take the data from the $data array
-			// and inject it into the template before
-			// sending it out as something to be displayed.
+			$this->article = $article;
+			$this->tags = $tags;
+
+			// Code to be written.
+			
 		}
 
 		// Takes the TAGS sub array from the data passed
