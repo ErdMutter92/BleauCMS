@@ -5,7 +5,7 @@
 	class View {
 
 		private $dataObject = array();
-		private $allowedObjs = array("Article", "Tag");
+		private $allowedObjs = array("Article", "Tag", "Nav", "Menu");
 		private $template;
 		private $html;
 
@@ -57,9 +57,24 @@
 		}
 
 		private function handleNav(Nav $object) {
+			$navTemplate = $this->template->getNav();
+			
+			$navTemplate = str_replace('<!-- NAV_TEXT -->', $object->getText(), $navTemplate);
+			$navTemplate = str_replace('<!-- NAV_URL -->', $object->getURL(), $navTemplate);
+			$navTemplate = str_replace('<!-- NAV_TARGET -->', $object->getTarget(), $navTemplate);
+			$navTemplate .= '<!-- NAV_HERE -->';
+
+			$this->html = str_replace('<!-- NAV_HERE -->', $navTemplate, $this->html);
 		}
 
-		private function handleMenu (Menu $object) {
+		private function handleMenu(Menu $object) {
+			$menuTemplae = $this->template->getMenu();
+
+			$menuTemplate = str_replace('<!-- MENU_TITLE -->', $object->getTitle(), $menuTemplate);
+			$menuTemplate = str_replace('<!-- MENU_HTML -->', $object->getBody(), $menuTemplate);
+			$menuTemplate .= '<!-- MENU_HERE -->';
+
+			$this->html = str_replace('<!-- MENU_HERE -->', $menuTemplate, $this->html);
 		}
 
 	}

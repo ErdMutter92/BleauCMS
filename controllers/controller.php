@@ -62,9 +62,12 @@
 			header("HTTP/1.0 404 Not Found");
 			$post = new PostDAO('./data/errors.csv', '|');
 			$tags = new TagDAO('./data/tags.csv', '|');
+			$navs = new NavDAO('./data/nav.csv', '|');
 
 			$post = $post->getArticles(0, 1);
+
 			$data = array_merge($tags->getAll(), $post);
+			$data = array_merge($data, $navs->getAll());
 
 			$this->view->distributeData($data);
 			$this->view->display();
@@ -73,10 +76,12 @@
 		private function index($name) {
 			$post = new PostDAO('./data/posts.csv', '|');
 			$tags = new TagDAO('./data/tags.csv', '|');
+			$navs = new NavDAO('./data/nav.csv', '|');
 
 			$post = $post->getArticles(0, 5);
 
 			$data = array_merge($tags->getAll(), $post);
+			$data = array_merge($data, $navs->getAll());
 
 			$this->view->distributeData($data);
 			$this->view->display();
@@ -85,10 +90,12 @@
 		private function about_me($name) {
 			$post = new PostDAO('./data/about_me.csv', '|');
 			$tags = new TagDAO('./data/tags.csv', '|');
+			$navs = new NavDAO('./data/nav.csv', '|');
 
-			$post = $post->getArticles(0, 5);
+			$post = $post->getArticles(0, 1);
 
 			$data = array_merge($tags->getAll(), $post);
+			$data = array_merge($data, $navs->getAll());
 
 			$this->view->distributeData($data);
 			$this->view->display();
