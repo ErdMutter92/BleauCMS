@@ -49,6 +49,7 @@
 
 		public function delete($id) {
 			$this->handler->removeLine($id);
+			$this->handler->write();
 		}
 
 		public function getAll() {

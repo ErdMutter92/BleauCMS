@@ -52,6 +52,7 @@
 
 		public function delete($lineNum) { 
 			$this->handler->removeLine($lineNum);
+			$this->handler->write();
 		}
 
 	}
