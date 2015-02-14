@@ -1,7 +1,6 @@
 <?php
 require('./controllers/controller.php');
 
-
-$site = new Controller('p');
+$site = new Controller('page');
 
 ?>

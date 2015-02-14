@@ -1,46 +1,37 @@
 <html>
 	<head>
-		<title>{?website_title?}</title>
-		<link rel="stylesheet" type="text/css" href="{?template_root?}default.css">
-		<link href='{?template_root?}default.css' rel='stylesheet' type='text/css'>
+		<title><!-- ? website_title --></title>
+		<link rel="stylesheet" type="text/css" href="<!-- ? template_root -->default.css">
 		<link href='http://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
-		<div class="admin-panel">Login <img src="{?template_root?}pride-button.gif" class="pride-button"></img></div>
+		<div class="admin-panel">Login <img src="<!-- ? template_root -->pride-button.gif" class="pride-button"></img></div>
 		<header class="main">
-			<img src="{?template_root?}profile-photo.jpg" class="profile-photo"></img>	
-			<h1>{?website_title?}</h1>
+			<img src="<!-- ? template_root -->profile-photo.jpg" class="profile-photo"></img>	
+			<h1><!-- ? website_title --></h1>
 			<input type="text" class="search" placeholder="Search..."></input>
 		</header>
 		<nav class="main">
 			<ul>
-				<!-- NAV_ITEM -->
+				<!-- NAV_HERE -->
+				<!-- START NAV_ITEM -->
 				<li><a href="<!-- NAV_URL -->" target="<!-- NAV_TARGET -->"><!-- NAV_TEXT --></a></li>
-				<!-- NAV_ITEM -->
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Ask Me Anything</a></li>
-				<li><a href="#">About Me</a></li>
-				<li><a href="#">Tag Cloud</a></li>
+				<!-- END NAV_ITEM -->
 			</ul>
 		</nav>
 		<article class="main">
 			<nav>
+				<!-- MENU_HERE -->
+				<!-- START MENU_ITEM -->
 				<div class="side-box">
-					<h1>Main Menu</h1>
-					<ul>
-						<li><a href="#">About This Blog</a></li>
-					</ul>
+					<h1><!-- MENU_TITLE --></h1>
+					<!-- MENU_HTML -->
 				</div>
-				<div class="side-box">
-					<h1>Blog Topics</h1>
-				</div>
-				<div class="side-box">
-					<h1>Find Me Online</h1>
-				</div>
+				<!-- END MENU_ITEM -->
 			</nav>
 			<div class="posts">
 				<!-- POST_HERE -->
-				<!-- ARTICLE_ITEM -->
+				<!-- START ARTICLE_ITEM -->
 				<div class="post">
 					<header class="post">
 						<h1><!-- ARTICLE_TITLE --></h1>
@@ -56,11 +47,11 @@
 						<div class="comment-link"><!-- COMMENTS_LINK --></div>
 					</footer>
 				</div>
-				<!-- ARTICLE_ITEM -->
+				<!-- END ARTICLE_ITEM -->
 			</div>
 		</article>
 		<footer class="main">
-			<div class="copyright">{?COPYRIGHT?}</div>
+			<div class="copyright"><!-- ? COPYRIGHT --></div>
 		</footer>
 	</body>
 </html>

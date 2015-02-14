@@ -1,93 +1,89 @@
 <?php
-/********************************************************
 
-   Title: template
-   Author: Brandon "Alexis" Bleau (bmbleau@gmail.com)
-   Discription: The brains behind the template system,
-		accepts data and the template name then
-		returns the view back.
-
-
-********************************************************/
 	class Template {
 
-		private $template;
-		private $templateDir = './views/templates/';
-		private $article;
-		private $templateFiles;
-		private $tags;
+		private $location;
+		private $contents = array();
+		private $nav;
+		private $menu;
+		private $post;
 
-		private $templateExtensions = array ("html", "css");
+		public function __construct($templateDir) {
+			$this->location = $templateDir;
+			$this->parseTemplate(array("html", "css"));
+		}
 
-		private $templateMap = array (
-			"index" => "Starry Night/",
-			"blog" => "Starry Night/",
-			"error404" => "Starry Night/"
-		);
-	
-		private function fetchTemplateContents() {
-			if ($handle = opendir($this->templateDir.$this->templateMap[$this->template])) {
+		private function parseTemplate(array $allowedExtensions) {
+			// opens the template directory and takes the contents
+			// of the files in that directory adding them to an array.
+			if ($handle = opendir($this->location)) {
 				while (false !== ($entry = readdir($handle))) {
+					$fileExtension = pathinfo($entry)['extension'];
+					$fileContent = file_get_contents($this->location.$entry);
 
-					// Only gets file contents for files in the dir
-					// which have a file extension found in $templateExtensions
-					if (false !== array_search(pathinfo($entry)['extension'], $this->templateExtensions)) {
-						$this->templateFiles[pathinfo($entry)['extension']] = 
-							file_get_contents($this->templateDir.
-								$this->templateMap[$this->template]
-									.$entry);
-
+					// Only allows files with the extensions located in
+					// array $allowedExtensions to be added to contents array.
+					if (false !== array_search($fileExtension, $allowedExtensions)) {
+						$this->contents[$fileExtension] = $fileContent;
 					}
-
 				}
-				closedir($handle);
-			}
-		}
-
-		// input: $page = String: what page to load
-		// input: $data = Array: infomration from the model.
-		// output: Returns the constructed view to be displayed.
-		public function consolidate($template, $article, $tags) {
-			$this->template = (string) $template;
-			$this->fetchTemplateContents();
-
-			$this->article = $article;
-			$this->tags = $tags;
-
-			$this->handlePosts($this->article['0']);
-
-			// runs through the array sending the tag object to handleTags.
-			foreach ($this->tags as $key => $item) {
-				$this->handleTags($tags[$key]);
 			}
 
-			// Code to be written.
-			
+			// sets the post value to the contents between the two html comments.
+			$this->setPost($this->getElement('ARTICLE'));
+			$this->setNav($this->getElement('NAV'));
+			$this->setMenu($this->getElement('MENU'));
+
 		}
 
-		// Takes the TAGS sub array from the data passed
-		// from the controller and replaces the tags
-		// in the template html.
-		private function handleTags(Tag $object) {
-			$tagStr = '{' . $object->getSymble() . $object->getTag() . $object->getSymble() . '}';
+		private function getElement($item) {
+			$startTag = '<!-- START ' . $item . '_ITEM -->';
+			$endTag = '<!-- END ' . $item . '_ITEM -->';
+			$element = split($startTag, split($endTag, $this->contents['html'])[0])[1];
 
-			$data[$tagStr] = $object->getContents();
-			
-			foreach ($data as $key => $item) {
-				$this->templateFiles['html'] = str_replace($key, $item, $this->templateFiles['html']);
-			}
+			// remove element tags from html along with the element.
+			$this->contents['html'] = str_replace($startTag.$element.$endTag, '', $this->contents['html']);
+
+			return $element;
 		}
 
-		public function handlePosts(Article $object) {
-			$this->templateFiles['html'] = str_replace('<!-- ARTICLE_TITLE -->', $object->getTitle(), $this->templateFiles['html']);
-			$this->templateFiles['html'] = str_replace('<!-- ARTICLE_AUTHOR -->', $object->getAuthor(), $this->templateFiles['html']);
-			$this->templateFiles['html'] = str_replace('<!-- ARTICLE_TIME -->', $object->getTimestamp(), $this->templateFiles['html']);
-			$this->templateFiles['html'] = str_replace('<!-- ARTICLE_TEXT -->', $object->getBody(), $this->templateFiles['html']);
-			$this->templateFiles['html'] = str_replace('<!-- COMMENTS_LINK -->', 'Comments (0)', $this->templateFiles['html']);
+		private function setPost($html) {
+			$this->post = $html;
 		}
 
-		public function display() {
-			echo $this->templateFiles['html'];
+		public function getPost() {
+			return $this->post;
 		}
+		
+		private function setMenu($html) {
+			$this->menu = $html;
+		}
+
+		public function getMenu() {
+			return $this->menu;
+		}
+
+		private function setNav($html) {
+			$this->nav = $html;
+		}
+
+		public function getNav() {
+			return $this->nav;
+		}
+
+		public function setLocaton($location) {
+			$this->location = $location;
+		}
+
+		public function getLocation() {
+			return $this->location;
+		}
+
+		public function getHTMLContents() {
+			return $this->contents['html'];
+		}
+
+
 	}
+
 ?>

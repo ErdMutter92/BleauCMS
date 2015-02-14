@@ -9,7 +9,7 @@
 
 ********************************************************/
 
-	require('./views/template.php');
+	require('./views/view.php');
 	require('./models/model.php');
 
 	class Controller {
@@ -21,6 +21,7 @@
 		private $controllerMap = array (
 			"blog" => "index",
 			"index" => "index",
+			"about" => "about_me"
 		);
 
 		// Upon inital construction of the object, this takes
@@ -30,7 +31,7 @@
 		// the function corresponding to the landingPage.
 		public function __construct($key) {
 
-			$this->view = new Template();
+			$this->view = new View('./views/templates/Starry Night/');
 			$this->model = new Model();
 
 			if (isset($_GET[$key])) {
@@ -59,8 +60,13 @@
 		// Handles any page not found issues that arrise. 
 		private function error404($name) {
 			header("HTTP/1.0 404 Not Found");
-			$data = $this->model->request('error404Data', 'array');
-			$this->view->consolidate('error404', $data);
+			$post = new PostDAO('./data/errors.csv', '|');
+			$tags = new TagDAO('./data/tags.csv', '|');
+
+			$post = $post->getArticles(0, 1);
+			$data = array_merge($tags->getAll(), $post);
+
+			$this->view->distributeData($data);
 			$this->view->display();
 		}
 
@@ -70,8 +76,21 @@
 
 			$post = $post->getArticles(0, 5);
 
-			$this->view->consolidate($name, $post, $tags->getAll());
+			$data = array_merge($tags->getAll(), $post);
 
+			$this->view->distributeData($data);
+			$this->view->display();
+		}
+
+		private function about_me($name) {
+			$post = new PostDAO('./data/about_me.csv', '|');
+			$tags = new TagDAO('./data/tags.csv', '|');
+
+			$post = $post->getArticles(0, 5);
+
+			$data = array_merge($tags->getAll(), $post);
+
+			$this->view->distributeData($data);
 			$this->view->display();
 		}
 
