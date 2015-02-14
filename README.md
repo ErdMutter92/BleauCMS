@@ -8,3 +8,11 @@ Being as this is a new project, and that I am not sure what direction I want to 
 <li>Then I need to rewrite the other mess know as my view...</li>
 <li>Everything...</li>
 </ul>
+
+<h2>ToDo List</h2>
+<ul>
+<li>Search Functionality (JavaScript & PHP)</li>
+<li>Side Menu Bar</li>
+<li>Login Auth for Admin</li>
+<li>Admin View</li>
+</ul>
